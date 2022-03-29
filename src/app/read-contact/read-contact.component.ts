@@ -8,6 +8,7 @@ import { Data } from '../data.service';
 })
 export class ReadContactComponent implements OnInit {
   public userDet: {
+    id?: number;
     name: string;
     accountNumber: string;
     cardNumber: string;
@@ -18,5 +19,11 @@ export class ReadContactComponent implements OnInit {
 
   ngOnInit() {
     this.userDet = this.userDetails.getDetails();
+  }
+
+  deleteEntry(id: number) {
+    console.log(this.userDetails.customerDetails[id]);
+
+    this.userDetails.deleteHandler(id);
   }
 }

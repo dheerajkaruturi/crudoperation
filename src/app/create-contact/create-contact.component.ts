@@ -25,5 +25,10 @@ export class CreateContactComponent implements OnInit {
       this.type
     );
     this.createdDetails.addNewDetails(newDetails);
+
+    this.newAccountName = '';
+    this.accountNumber = '';
+    this.cardNumber = '';
+    this.type = '';
   }
 }

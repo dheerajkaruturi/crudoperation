@@ -14,4 +14,10 @@ export class Data {
   addNewDetails(details: accountLedger) {
     this.customerDetails.push(details);
   }
+
+  //* delete selected entry:
+
+  deleteHandler(id: number): accountLedger[] {
+    return this.customerDetails.splice(id, 1);
+  }
 }
