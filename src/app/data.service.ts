@@ -1,17 +1,9 @@
+import { accountLedger } from './data.model';
+
 export class Data {
-  customerDetails = [
-    {
-      name: 'Jason',
-      accountNumber: '0123456789',
-      cardNumber: '0123456789123456',
-      type: 'saving',
-    },
-    {
-      name: 'John',
-      accountNumber: '01234455289',
-      cardNumber: '0123456789123456',
-      type: 'current',
-    },
+  customerDetails: accountLedger[] = [
+    new accountLedger('Jason', '0123456789', '0123456789123456', 'saving'),
+    new accountLedger('John', '01234455289', '0123456789123456', 'current'),
   ];
 
   getDetails() {
@@ -19,17 +11,7 @@ export class Data {
   }
 
   //* adding new details:
-  addNewDetails(
-    name: string,
-    accountNumber: string,
-    cardNumber: string,
-    type: string
-  ) {
-    this.customerDetails.push({
-      name: name,
-      accountNumber: accountNumber,
-      cardNumber: cardNumber,
-      type: type,
-    });
+  addNewDetails(details: accountLedger) {
+    this.customerDetails.push(details);
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { accountLedger } from '../data.model';
 import { Data } from '../data.service';
 
 @Component({
@@ -17,11 +18,12 @@ export class CreateContactComponent implements OnInit {
   ngOnInit(): void {}
 
   addDetailsHandler() {
-    this.createdDetails.addNewDetails(
+    const newDetails = new accountLedger(
       this.newAccountName,
       this.accountNumber,
       this.cardNumber,
       this.type
     );
+    this.createdDetails.addNewDetails(newDetails);
   }
 }
