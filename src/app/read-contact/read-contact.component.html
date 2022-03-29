@@ -1,0 +1,26 @@
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Account Holder Name</th>
+      <th>Account Number</th>
+      <th>Card Number</th>
+      <th>Account Type</th>
+      <th class="text-center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of userDet; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.accountNumber }}</td>
+      <td>{{ user.cardNumber }}</td>
+      <td>{{ user.type }}</td>
+      <td class="text-center">
+        <button class="btn btn-warning">Edit</button>
+        &nbsp;
+        <button class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
