@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { accountLedger } from '../data.model';
 import { Data } from '../data.service';
 
 @Component({
@@ -21,9 +22,12 @@ export class ReadContactComponent implements OnInit {
     this.userDet = this.userDetails.getDetails();
   }
 
+  //* delete function
   deleteEntry(id: number) {
-    console.log(this.userDetails.customerDetails[id]);
-
     this.userDetails.deleteHandler(id);
+  }
+  //* edit function
+  editEntry(id: number) {
+    this.userDetails.editSelectedEntry(this.userDetails.customerDetails[id]);
   }
 }

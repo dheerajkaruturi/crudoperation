@@ -12,12 +12,24 @@
   <tbody>
     <tr *ngFor="let user of userDet; let i = index">
       <td>{{ i + 1 }}</td>
-      <td style="text-transform: capitalize;">{{ user.name }}</td>
+      <td style="text-transform: capitalize">{{ user.name }}</td>
       <td>{{ user.accountNumber }}</td>
       <td>{{ user.cardNumber }}</td>
-      <td style="text-transform: capitalize;">{{ user.type }}</td>
+      <td style="text-transform: capitalize">{{ user.type }}</td>
       <td class="text-center">
-        <button class="btn btn-warning">Edit</button>
+        <a
+          class="btn btn-warning"
+          [routerLink]="[
+            '/editdetails',
+            i + 1,
+            user.name,
+            user.accountNumber,
+            user.cardNumber,
+            user.type
+          ]"
+          (click)="editEntry(i)"
+          >Edit</a
+        >
         &nbsp;
         <button class="btn btn-danger" (click)="deleteEntry(i)">Delete</button>
       </td>
