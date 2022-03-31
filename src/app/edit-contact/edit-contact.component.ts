@@ -32,5 +32,4 @@ export class EditContactComponent implements OnInit {
       type: this.route.snapshot.params['type'],
     };
   }
-  
 }
