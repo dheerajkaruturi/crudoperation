@@ -11,6 +11,7 @@ import { Data } from '../data.service';
 export class CreateContactComponent implements OnInit {
   @ViewChild('editform') createEntry: NgForm;
 
+  //? these values below will be sent to account ledger class to create new instace.
   newAccountName = '';
   accountNumber = '';
   cardNumber = '';
