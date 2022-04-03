@@ -20,9 +20,9 @@ export class CreateContactComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  //? form submission function:
+  //? form submission function: validations made using template driven approach
   oncreating() {
-    //* if the input values are valid form will be submitted else returned
+    //* if the input values are valid, form will be submitted else returned.
     if (this.createEntry.valid) {
       const newDetails = new accountLedger(
         this.newAccountName,
