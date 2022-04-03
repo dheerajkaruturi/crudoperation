@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { accountLedger } from '../data.model';
 import { Data } from '../data.service';
 
@@ -8,6 +9,8 @@ import { Data } from '../data.service';
   styleUrls: ['./create-contact.component.css'],
 })
 export class CreateContactComponent implements OnInit {
+  @ViewChild('editform') createEntry: NgForm;
+
   newAccountName = '';
   accountNumber = '';
   cardNumber = '';
@@ -17,18 +20,22 @@ export class CreateContactComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  addDetailsHandler() {
-    const newDetails = new accountLedger(
-      this.newAccountName,
-      this.accountNumber,
-      this.cardNumber,
-      this.type
-    );
-    this.createdDetails.addNewDetails(newDetails);
+  //? form submission function:
+  oncreating() {
+    //* if the input values are valid form will be submitted else returned
+    if (this.createEntry.valid) {
+      const newDetails = new accountLedger(
+        this.newAccountName,
+        this.accountNumber,
+        this.cardNumber,
+        this.type
+      );
+      this.createdDetails.addNewDetails(newDetails);
 
-    this.newAccountName = '';
-    this.accountNumber = '';
-    this.cardNumber = '';
-    this.type = '';
+      this.createEntry.reset();
+    } else {
+      alert('Form is not valid');
+      return;
+    }
   }
 }

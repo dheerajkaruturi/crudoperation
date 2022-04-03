@@ -1,53 +1,105 @@
 <div class="card">
   <div class="card-body">
-    <div class="row">
-      <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-4">
-        <div class="form-group">
-          <label for="name">Account Holder Name</label>
-          <input
-            class="form-control"
-            type="text"
-            [(ngModel)]="newAccountName"
-          />
+    <form (ngSubmit)="oncreating()" #editform="ngForm">
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-4">
+          <div class="form-group">
+            <label for="name"
+              >Account Holder Name
+              <sup style="font-weight: bold; color: red">*</sup></label
+            >
+            <input
+              class="form-control"
+              type="text"
+              name="name"
+              id="name"
+              ngModel
+              [(ngModel)]="newAccountName"
+              #accName="ngModel"
+              required
+            />
+            <span
+              *ngIf="!accName.valid && accName.touched"
+              style="color: red; font-size: small"
+              >give a valid input❗</span
+            >
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-4">
+          <div class="form-group">
+            <label for="accNumber"
+              >Account Number
+              <sup style="font-weight: bold; color: red">*</sup></label
+            >
+            <input
+              class="form-control accNum"
+              type="text"
+              id="accNumber"
+              name="accNum"
+              ngModel
+              [(ngModel)]="accountNumber"
+              #accNum="ngModel"
+              required
+            />
+            <span
+              *ngIf="!accNum.valid && accNum.touched"
+              style="color: red; font-size: small"
+              >give a valid input❗</span
+            >
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-4">
+          <div class="form-group">
+            <label for="accNumber"
+              >Card Number
+              <sup style="font-weight: bold; color: red">*</sup></label
+            >
+            <input
+              class="form-control"
+              type="text"
+              id="cardNumber"
+              name="cardNum"
+              ngModel
+              [(ngModel)]="cardNumber"
+              #cardNum="ngModel"
+              required
+            />
+            <span
+              *ngIf="!cardNum.valid && cardNum.touched"
+              style="color: red; font-size: small"
+              >give a valid input❗</span
+            >
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-4">
+          <div class="form-group">
+            <label for="accType"
+              >Account Type <sup style="font-weight: bold; color: red">*</sup>
+            </label>
+            <select
+              name="typeofaccount"
+              id="accType"
+              name="accType"
+              class="form-control"
+              ngModel
+              [(ngModel)]="type"
+              #accType="ngModel"
+              required
+            >
+              <option value="saving">Saving</option>
+              <option value="current">Current</option>
+            </select>
+            <span
+              *ngIf="!accType.valid && accType.touched"
+              style="color: red; font-size: small"
+              >give a valid input❗</span
+            >
+          </div>
+        </div>
+        <div class="move-right">
+          <button class="btn btn-primary" type="submit">Add Account</button>
         </div>
       </div>
-      <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-4">
-        <div class="form-group">
-          <label for="accNumber">Account Number</label>
-          <input
-            class="form-control"
-            type="text"
-            id="accNumber"
-            [(ngModel)]="accountNumber"
-          />
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-4">
-        <div class="form-group">
-          <label for="accNumber">Card Number</label>
-          <input
-            class="form-control"
-            type="text"
-            id="accNumber"
-            [(ngModel)]="cardNumber"
-          />
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-4">
-        <div class="form-group">
-          <label for="accType">Account Type</label>
-          <select name="typeofaccount" id="accType" class="form-control" [(ngModel)]="type">
-            <option value="none">--select--</option>
-            <option value="saving">Saving</option>
-            <option value="current">Current</option>
-          </select>
-        </div>
-      </div>
-      <div class="move-right">
-        <button class="btn btn-primary" (click)="addDetailsHandler()">
-          Add Account
-        </button>
-      </div>
-    </div>
+    </form>
   </div>
 </div>

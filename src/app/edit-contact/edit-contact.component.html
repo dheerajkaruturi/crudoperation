@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-body">
-    <form action="">
+    <form #form="ngForm">
       <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-4">
           <div class="form-group">
@@ -8,6 +8,8 @@
             <input
               class="form-control"
               type="text"
+              name="name"
+              id="name"
               [(ngModel)]="accHoldername"
             />
           </div>
@@ -18,7 +20,8 @@
             <input
               class="form-control"
               type="text"
-              id="accNumber"
+              name="accNum"
+              id="accNum"
               [(ngModel)]="accNum"
             />
           </div>
@@ -29,6 +32,7 @@
             <input
               class="form-control"
               type="text"
+              name="cardNum"
               id="cardNumber"
               [(ngModel)]="cardNum"
             />
@@ -41,6 +45,7 @@
               name="typeofaccount"
               id="accType"
               class="form-control"
+              name="accType"
               [(ngModel)]="acctype"
             >
               <option value="none">--select--</option>

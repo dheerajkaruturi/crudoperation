@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'addnew', component: CreateContactComponent },
 
   {
-    path: 'editdetails/:id/:name/:accname/:cardnum/:type',
+    path: 'editdetails/:id/:name/:accnum/:cardnum/:type',
     component: EditContactComponent,
   },
 ];
