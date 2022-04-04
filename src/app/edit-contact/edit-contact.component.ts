@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { accountLedger } from '../data.model';
+import { Data } from '../data.service';
 
 @Component({
   selector: 'app-edit-contact',
@@ -24,7 +26,7 @@ export class EditContactComponent implements OnInit {
 
   acctype = '';
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private datatoSend: Data) {}
 
   ngOnInit(): void {
     this.userDetails = {
@@ -35,14 +37,28 @@ export class EditContactComponent implements OnInit {
       type: this.route.snapshot.params['type'],
     };
 
-    console.log(this.userDetails);
-
-    //? populating the input values using the data passed through the route parameters with 2way data binding
+    //? populating the input values subscribing the data passed through the route parameters with 2way data binding.
     this.route.params.subscribe(() => {
       this.accHoldername = this.userDetails['name'];
       this.accNum = this.userDetails['accNum'];
       this.cardNum = this.userDetails['cardNum'];
       this.acctype = this.userDetails['type'];
     });
+    console.log(this.accHoldername, this.accNum, this.cardNum, this.acctype);
+  }
+
+  submitEdittedForm() {
+    console.log(this.accHoldername, this.accNum, this.cardNum, this.acctype);
+
+    //? edited details of the existing user and replacing them with old one.
+    const editedEntry = new accountLedger(
+      this.accHoldername,
+      this.accNum,
+      this.cardNum,
+      this.acctype
+    );
+
+    //* sending to service
+    this.datatoSend.editSelectedEntry(this.userDetails.id - 1, editedEntry);
   }
 }

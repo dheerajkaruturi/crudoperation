@@ -1,6 +1,7 @@
+<h3>This is {{userDetails.name}}'s Account</h3>
 <div class="card">
   <div class="card-body">
-    <form #form="ngForm">
+    <form (ngSubmit)="submitEdittedForm()" #form="ngForm">
       <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-4">
           <div class="form-group">

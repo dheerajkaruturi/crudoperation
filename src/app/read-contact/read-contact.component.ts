@@ -26,8 +26,4 @@ export class ReadContactComponent implements OnInit {
   deleteEntry(id: number) {
     this.userDetails.deleteHandler(id);
   }
-  //* edit function
-  editEntry(id: number) {
-    this.userDetails.editSelectedEntry(this.userDetails.customerDetails[id]);
-  }
 }
