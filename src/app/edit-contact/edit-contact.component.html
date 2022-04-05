@@ -1,7 +1,7 @@
-<h3>This is {{userDetails.name}}'s Account</h3>
+<h3>This is {{ userDetails.name }}'s Account</h3>
 <div class="card">
   <div class="card-body">
-    <form (ngSubmit)="submitEdittedForm()" #form="ngForm">
+    <form (ngSubmit)="submitEdittedForm()" [formGroup]="editForm">
       <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-4">
           <div class="form-group">
@@ -11,8 +11,20 @@
               type="text"
               name="name"
               id="name"
-              [(ngModel)]="accHoldername"
+              formControlName="accountHolderName"
+              required
             />
+            <span
+              class="text-danger font-smaller"
+              *ngIf="editForm.get('accountHolderName').errors?.['required']"
+              >Name is not valid</span
+            >
+            <span
+              class="text-danger font-smaller"
+              *ngIf="editForm.get('accountHolderName').errors?.['minlength']"
+            >
+              Name should have more than 3 characters
+            </span>
           </div>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-4">
@@ -23,20 +35,52 @@
               type="text"
               name="accNum"
               id="accNum"
-              [(ngModel)]="accNum"
+              formControlName="accountNumber"
+              required
             />
+            <span
+              class="text-danger font-smaller"
+              *ngIf="editForm.get('accountNumber').errors?.['required']"
+              >Account Number is required</span
+            >
+            <span
+              class="text-danger font-smaller"
+              *ngIf="editForm.get('accountNumber').errors?.['minlength']"
+              >Account Number should be of 16 digits</span
+            >
+            <span
+              class="text-danger font-smaller"
+              *ngIf="editForm.get('accountNumber').errors?.['maxlength']"
+              >Account Number should be of 16 digits</span
+            >
           </div>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-4">
           <div class="form-group">
-            <label for="accNumber">Card Number</label>
+            <label for="cardNumber">Card Number</label>
             <input
               class="form-control"
               type="text"
               name="cardNum"
               id="cardNumber"
-              [(ngModel)]="cardNum"
+              formControlName="cardNumber"
+              required
             />
+            <span
+              class="text-danger font-smaller"
+              *ngIf="editForm.get('cardNumber').errors?.['required']"
+              >Card Number is required</span
+            >
+            <span
+              class="text-danger font-smaller"
+              *ngIf="editForm.get('cardNumber').errors?.['minlength']"
+              >card Number should be of 16 digits</span
+            >
+            <span
+              class="text-danger font-smaller"
+              *ngIf="editForm.get('cardNumber').errors?.['maxlength']"
+              >card Number should be of 16 digits</span
+            >
           </div>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-4 col-xxl-4">
@@ -47,9 +91,9 @@
               id="accType"
               class="form-control"
               name="accType"
-              [(ngModel)]="acctype"
+              formControlName="accountType"
+              required
             >
-              <option value="none">--select--</option>
               <option value="saving">Saving</option>
               <option value="current">Current</option>
             </select>

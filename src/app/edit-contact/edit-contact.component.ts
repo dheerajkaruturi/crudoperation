@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { accountLedger } from '../data.model';
 import { Data } from '../data.service';
@@ -16,6 +17,8 @@ export class EditContactComponent implements OnInit {
     cardNum: string;
     type: string;
   };
+
+  editForm: FormGroup;
 
   //* 2-way binding:
   accHoldername = '';
@@ -45,8 +48,28 @@ export class EditContactComponent implements OnInit {
       this.acctype = this.userDetails['type'];
     });
     console.log(this.accHoldername, this.accNum, this.cardNum, this.acctype);
+
+    //? form validations:
+    this.editForm = new FormGroup({
+      accountHolderName: new FormControl(this.accHoldername, [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+      accountNumber: new FormControl(this.accNum, [
+        Validators.required,
+        Validators.minLength(16),
+        Validators.maxLength(16),
+      ]),
+      cardNumber: new FormControl(this.cardNum, [
+        Validators.required,
+        Validators.minLength(16),
+        Validators.maxLength(16),
+      ]),
+      accountType: new FormControl(this.acctype, Validators.required),
+    });
   }
 
+  //? form submission
   submitEdittedForm() {
     console.log(this.accHoldername, this.accNum, this.cardNum, this.acctype);
 
