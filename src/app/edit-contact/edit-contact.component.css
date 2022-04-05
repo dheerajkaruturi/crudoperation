@@ -3,6 +3,7 @@ input.ng-valid {
   background-color: #71ca71;
 }
 
-input.ng-invalid.ng-touched {
+input.ng-invalid {
   border: 2px solid red;
+  background-color: #de7474;
 }

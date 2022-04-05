@@ -13,6 +13,7 @@
               type="text"
               name="name"
               id="name"
+              minlength="3"
               ngModel
               [(ngModel)]="newAccountName"
               #accName="ngModel"
@@ -22,6 +23,11 @@
               *ngIf="!accName.valid && accName.touched"
               style="color: red; font-size: small"
               >give a valid input❗</span
+            >
+            <span
+              class="text-danger font-smaller"
+              *ngIf="accName.errors?.['minlength']"
+              >Should be more than 3 characters</span
             >
           </div>
         </div>
@@ -37,6 +43,8 @@
               id="accNumber"
               name="accNum"
               ngModel
+              minlength="16"
+              maxlength="16"
               [(ngModel)]="accountNumber"
               #accNum="ngModel"
               required
@@ -45,6 +53,16 @@
               *ngIf="!accNum.valid && accNum.touched"
               style="color: red; font-size: small"
               >give a valid input❗</span
+            >
+            <span
+              class="text-danger font-smaller"
+              *ngIf="accNum.errors?.['minlength']"
+              >Should be 16 digit number</span
+            >
+            <span
+              class="text-danger font-smaller"
+              *ngIf="accNum.errors?.['maxlength']"
+              >Should be 16 digit number</span
             >
           </div>
         </div>
@@ -59,6 +77,8 @@
               type="text"
               id="cardNumber"
               name="cardNum"
+              minlength="16"
+              maxlength="16"
               ngModel
               [(ngModel)]="cardNumber"
               #cardNum="ngModel"
@@ -68,6 +88,16 @@
               *ngIf="!cardNum.valid && cardNum.touched"
               style="color: red; font-size: small"
               >give a valid input❗</span
+            >
+            <span
+              class="text-danger font-smaller"
+              *ngIf="cardNum.errors?.['minlength']"
+              >Should be 16 digit number</span
+            >
+            <span
+              class="text-danger font-smaller"
+              *ngIf="cardNum.errors?.['maxlength']"
+              >Should be 16 digit number</span
             >
           </div>
         </div>
