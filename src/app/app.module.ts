@@ -11,6 +11,7 @@ import { DeleteContactComponent } from './delete-contact/delete-contact.componen
 import { ReadContactComponent } from './read-contact/read-contact.component';
 import { HeaderComponent } from './header/header.component';
 import { Data } from './data.service';
+ 
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { Data } from './data.service';
     DeleteContactComponent,
     ReadContactComponent,
     HeaderComponent,
+   
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [Data],

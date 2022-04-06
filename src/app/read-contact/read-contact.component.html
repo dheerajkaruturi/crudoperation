@@ -12,10 +12,10 @@
   <tbody>
     <tr *ngFor="let user of userDet; let i = index">
       <td>{{ i + 1 }}</td>
-      <td style="text-transform: capitalize">{{ user.name }}</td>
+      <td>{{ user.name | uppercase }}</td>
       <td>{{ user.accountNumber }}</td>
       <td>{{ user.cardNumber }}</td>
-      <td style="text-transform: capitalize">{{ user.type }}</td>
+      <td>{{ user.type | uppercase }}</td>
       <td class="text-center">
         <a
           class="btn btn-warning"
