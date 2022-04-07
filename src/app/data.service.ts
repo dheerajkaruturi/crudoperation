@@ -1,20 +1,27 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { accountLedger } from './data.model';
 
 @Injectable()
 export class Data {
-  customerDetails: accountLedger[] = [
-    new accountLedger('Jason', '0123456789', '0123456789123456', 'saving'),
-    new accountLedger('John', '01234455289', '0123456789123456', 'current'),
-  ];
+  customerDetails: accountLedger[] = [];
+
+  baseURL: string =
+    'https://angular-crud-d0e1f-default-rtdb.firebaseio.com/ledger.json';
+
+  constructor(private httpData: HttpClient) {}
 
   getDetails() {
     return this.customerDetails;
   }
 
-  //* adding new details:
+  //* adding new details: post method
   addNewDetails(details: accountLedger) {
-    this.customerDetails.push(details);
+    //this.customerDetails.push(details);
+
+    this.httpData.post(this.baseURL, details).subscribe((newEntry) => {
+      console.log(newEntry);
+    });
   }
 
   //* delete selected entry:

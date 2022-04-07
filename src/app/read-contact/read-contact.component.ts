@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { accountLedger } from '../data.model';
 import { Data } from '../data.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-read-contact',
@@ -8,22 +10,41 @@ import { Data } from '../data.service';
   styleUrls: ['./read-contact.component.css'],
 })
 export class ReadContactComponent implements OnInit {
-  public userDet: {
-    id?: number;
-    name: string;
-    accountNumber: string;
-    cardNumber: string;
-    type: string;
-  }[] = [];
+  baseURL: string =
+    'https://angular-crud-d0e1f-default-rtdb.firebaseio.com/ledger.json';
 
-  constructor(private userDetails: Data) {}
+  isLoading: boolean = false;
+
+  userDet: accountLedger[] = [];
+
+  constructor(private userDetails: Data, private httpEntry: HttpClient) {}
 
   ngOnInit() {
-    this.userDet = this.userDetails.getDetails();
+    this.isLoading = true;
+    this.httpEntry
+      .get(this.baseURL)
+      .pipe(
+        map((response) => {
+          const entriesRetrieved = [];
+          for (let key in response) {
+            if (response.hasOwnProperty(key)) {
+              entriesRetrieved.push({ id: key, ...response[key] });
+            }
+          }
+          return entriesRetrieved;
+        })
+      )
+      .subscribe((entry) => {
+        this.isLoading = false;
+
+        console.log(entry);
+
+        this.userDet = entry;
+      });
   }
 
   //* delete function
   deleteEntry(id: number) {
-    this.userDetails.deleteHandler(id);
+    //this.userDetails.deleteHandler(id);
   }
 }

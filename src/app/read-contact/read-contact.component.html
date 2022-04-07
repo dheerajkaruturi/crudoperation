@@ -1,4 +1,10 @@
-<table class="table table-bordered table-striped">
+<p class="bold text-danger" *ngIf="userDet.length === 0 && !isLoading">
+  No Data Available
+</p>
+<table
+  class="table table-bordered table-striped"
+  *ngIf="userDet.length > 0 && !isLoading"
+>
   <thead>
     <tr>
       <th>#</th>
@@ -36,3 +42,19 @@
     </tr>
   </tbody>
 </table>
+<div style="display: flex; justify-content: center;">
+  <p
+    style="
+      text-align: center;
+      font-weight: bold;
+      background-color: #252525;
+      color: #f7f7f7;
+      padding: 10px;
+      width: 150px;
+      border-radius: 10px;
+    "
+    *ngIf="isLoading"
+  >
+    Loading...!!!
+  </p>
+</div>
