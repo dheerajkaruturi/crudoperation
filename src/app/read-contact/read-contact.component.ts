@@ -21,26 +21,14 @@ export class ReadContactComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.httpEntry
-      .get(this.baseURL)
-      .pipe(
-        map((response) => {
-          const entriesRetrieved = [];
-          for (let key in response) {
-            if (response.hasOwnProperty(key)) {
-              entriesRetrieved.push({ id: key, ...response[key] });
-            }
-          }
-          return entriesRetrieved;
-        })
-      )
-      .subscribe((entry) => {
-        this.isLoading = false;
 
-        console.log(entry);
+    this.userDetails.fetchEntries().subscribe((entry) => {
+      this.isLoading = false;
 
-        this.userDet = entry;
-      });
+      console.log(entry);
+
+      this.userDet = entry;
+    });
   }
 
   //* delete function
