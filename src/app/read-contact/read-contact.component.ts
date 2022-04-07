@@ -21,7 +21,15 @@ export class ReadContactComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
+    this.getRequest();
+  }
 
+  //* delete function
+  deleteEntry(id: number) {
+    //this.userDetails.deleteHandler(id);
+  }
+
+  private getRequest() {
     this.userDetails.fetchEntries().subscribe((entry) => {
       this.isLoading = false;
 
@@ -29,10 +37,5 @@ export class ReadContactComponent implements OnInit {
 
       this.userDet = entry;
     });
-  }
-
-  //* delete function
-  deleteEntry(id: number) {
-    //this.userDetails.deleteHandler(id);
   }
 }
