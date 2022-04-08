@@ -23,11 +23,13 @@ export class EditContactComponent implements OnInit {
   //* 2-way binding:
   accHoldername = '';
 
-  accNum = '';
+  accNum: string = '';
 
-  cardNum = '';
+  cardNum: string = '';
 
-  acctype = '';
+  acctype: string = '';
+
+  crypticId: number;
 
   constructor(private route: ActivatedRoute, private datatoSend: Data) {}
 
@@ -46,6 +48,7 @@ export class EditContactComponent implements OnInit {
       this.accNum = this.userDetails['accNum'];
       this.cardNum = this.userDetails['cardNum'];
       this.acctype = this.userDetails['type'];
+      this.crypticId = this.userDetails['id'];
     });
     console.log(this.accHoldername, this.accNum, this.cardNum, this.acctype);
 
@@ -82,6 +85,6 @@ export class EditContactComponent implements OnInit {
     );
 
     //* sending to service
-    this.datatoSend.editSelectedEntry(this.userDetails.id - 1, editedEntry);
+    this.datatoSend.editEntry(editedEntry ,this.crypticId);
   }
 }

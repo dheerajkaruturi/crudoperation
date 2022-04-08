@@ -12,6 +12,9 @@ import { DeleteContactComponent } from './delete-contact/delete-contact.componen
 import { ReadContactComponent } from './read-contact/read-contact.component';
 import { HeaderComponent } from './header/header.component';
 import { Data } from './data.service';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
  
 
 @NgModule({
@@ -24,7 +27,7 @@ import { Data } from './data.service';
     HeaderComponent,
    
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideDatabase(() => getDatabase())],
   providers: [Data],
   bootstrap: [AppComponent],
 })

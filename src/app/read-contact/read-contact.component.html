@@ -27,17 +27,17 @@
           class="btn btn-warning"
           [routerLink]="[
             '/editdetails',
-            i + 1,
+            user.id,
             user.name,
             user.accountNumber,
             user.cardNumber,
             user.type
           ]"
-          (click)="editEntry(i)"
+          (click)="editEntry(user.id)"
           >Edit</a
         >
         &nbsp;
-        <button class="btn btn-danger" (click)="deleteEntry(i)">Delete</button>
+        <button class="btn btn-danger" (click)="deleteEntry(user.id)">Delete</button> 
       </td>
     </tr>
   </tbody>

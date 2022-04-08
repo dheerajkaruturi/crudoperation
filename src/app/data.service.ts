@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { accountLedger } from './data.model';
 import { map } from 'rxjs/operators';
+import { Database, set, ref } from '@angular/fire/database';
+import { remove, update } from '@firebase/database';
 
 @Injectable()
 export class Data {
@@ -10,7 +12,7 @@ export class Data {
   baseURL: string =
     'https://angular-crud-d0e1f-default-rtdb.firebaseio.com/ledger.json';
 
-  constructor(private httpData: HttpClient) {}
+  constructor(private httpData: HttpClient, private db: Database) {}
 
   fetchEntries() {
     return this.httpData.get(this.baseURL).pipe(
@@ -37,12 +39,16 @@ export class Data {
 
   //* delete selected entry:
 
-  deleteHandler(id: number): accountLedger[] {
-    return this.customerDetails.splice(id, 1);
+  deleteHandler(entryID: number | string) {
+    if (window.confirm('Are you sure to Delete Entry')) {
+      remove(ref(this.db, 'ledger/' + entryID));
+    } else {
+      return;
+    }
   }
 
   //* replacing the selected entry:
-  editSelectedEntry(id: number, entry: accountLedger) {
-    this.customerDetails.splice(id, 1, entry);
+  editEntry(entry: accountLedger, id: number) {
+    update(ref(this.db, 'ledger/' + id), entry);
   }
 }

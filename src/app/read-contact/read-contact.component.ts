@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { accountLedger } from '../data.model';
 import { Data } from '../data.service';
-import { map } from 'rxjs/operators';
+import { Database, set, ref } from '@angular/fire/database';
+import { remove } from '@firebase/database';
 
 @Component({
   selector: 'app-read-contact',
@@ -17,7 +18,7 @@ export class ReadContactComponent implements OnInit {
 
   userDet: accountLedger[] = [];
 
-  constructor(private userDetails: Data, private httpEntry: HttpClient) {}
+  constructor(private userDetails: Data, private db: Database) {}
 
   ngOnInit() {
     this.isLoading = true;
@@ -25,10 +26,10 @@ export class ReadContactComponent implements OnInit {
   }
 
   //* delete function
-  deleteEntry(id: number) {
-    //this.userDetails.deleteHandler(id);
+  deleteEntry(id: number | string) {
+    console.log(id);
+    this.userDetails.deleteHandler(id);
   }
-
   private getRequest() {
     this.userDetails.fetchEntries().subscribe((entry) => {
       this.isLoading = false;
